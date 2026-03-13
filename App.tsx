@@ -10,13 +10,16 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 //Component
 import ExitApp from './src/components/ExitApp/ExitApp';
+import ButtonToast from './src/components/ButtonToast/ButtonToast';
 
 function App() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         {/* === Back Button Component === */}
         <ExitApp />
+        {/* === Button ==== */}
+        <ButtonToast />
       </SafeAreaView>
     </SafeAreaProvider>
   );

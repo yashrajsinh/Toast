@@ -1,6 +1,9 @@
 import { View, Text, TouchableOpacity, ToastAndroid } from 'react-native';
 import React from 'react';
-
+{
+  /* === This component is responsible for showing a toast msg on the screen
+  NOTE: Only works on android devices  */
+}
 export default function ButtonToast() {
   //Toast message on android
   function showToast() {
@@ -16,6 +19,7 @@ export default function ButtonToast() {
     >
       <TouchableOpacity
         onPress={showToast}
+        activeOpacity={0.4}
         style={{
           backgroundColor: '#2196F3',
           paddingVertical: 12,

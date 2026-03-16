@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar, Platform, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Navigation
@@ -15,6 +15,15 @@ function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
+        {/* iOS colored status bar workaround */}
+        {Platform.OS === 'ios' && (
+          <View style={{ height: 44, backgroundColor: 'white' }} />
+        )}
+        <StatusBar
+          barStyle="dark-content"
+          translucent={true} // true to show content under
+          animated={true}
+        />
         <Stack.Navigator>
           {/* Home Screen */}
           <Stack.Screen name="Home" component={HomeScreen} />

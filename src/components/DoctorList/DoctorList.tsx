@@ -5,8 +5,10 @@ import {
   StyleSheet,
   PixelRatio,
   Image,
+  RefreshControl,
+  StatusBar,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
 //Data
 import data from '../../data/DoctorData';
@@ -18,10 +20,31 @@ import data from '../../data/DoctorData';
 export default function DoctorList() {
   //use of API (PixelRatio)
   const imageSize = PixelRatio.getPixelSizeForLayoutSize(30);
+  //for refresh control
+  const [refreshing, setRefreshing] = useState(false);
+  //use State for refreshing data
+  const [doctors, setDoctors] = useState(data);
+
+  //function to handle API
+  const onRefresh = () => {
+    setRefreshing(true);
+    //call API
+    setTimeout(() => {
+      //refresh DRs here
+      setDoctors(data);
+      setRefreshing(false);
+    }, 2000); // 2 seconds
+  };
+
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
       <View style={styles.card}>
-        {data.map((doctor, index) => (
+        {doctors.map((doctor, index) => (
           <View key={index} style={styles.doctorItem}>
             {/* === Resize image using pixel ratio === */}
             <Image

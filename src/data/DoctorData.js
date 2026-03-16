@@ -6,7 +6,7 @@ const randomImg = gender =>
 
 const doctors = [
   {
-    name: 'Dr. John Smith',
+    name: 'Dr. Scott',
     type: 'Cardiologist',
     image: randomImg('men'),
   },

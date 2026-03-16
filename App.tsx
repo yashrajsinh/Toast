@@ -1,26 +1,27 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { StyleSheet } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+// Navigation
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-//Component
-import ExitApp from './src/components/ExitApp/ExitApp';
-import ButtonToast from './src/components/ButtonToast/ButtonToast';
+// Screens
+import HomeScreen from './src/screens/HomeScreen';
+import DoctorScreen from './src/screens/DoctorScreen';
+
+const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        {/* === Back Button Component === */}
-        <ExitApp />
-        {/* === Button ==== */}
-        <ButtonToast />
-      </SafeAreaView>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {/* Home Screen */}
+          <Stack.Screen name="Home" component={HomeScreen} />
+          {/* Doctor Screen */}
+          <Stack.Screen name="Details" component={DoctorScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }

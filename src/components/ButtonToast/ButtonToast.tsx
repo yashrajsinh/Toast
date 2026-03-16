@@ -29,6 +29,19 @@ export default function ButtonToast() {
       >
         <Text> Surprise Me !</Text>
       </TouchableOpacity>
+      {/* === Next BTN  ===*/}
+      <TouchableOpacity
+        activeOpacity={0.4}
+        style={{
+          backgroundColor: '#2196F3',
+          paddingVertical: 12,
+          paddingHorizontal: 25,
+          borderRadius: 8,
+          top: 10,
+        }}
+      >
+        <Text> Next Page !</Text>
+      </TouchableOpacity>
     </View>
   );
 }

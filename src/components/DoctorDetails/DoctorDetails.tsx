@@ -9,6 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import React, { useState } from 'react';
+import SliderColor from '../SliderColor/SliderColor';
 
 export default function DoctorDetails({ doctor }: any) {
   const [loading, setLoading] = useState(false);

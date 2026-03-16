@@ -6,11 +6,13 @@ import ButtonToast from '../components/ButtonToast/ButtonToast';
 import ExitApp from '../components/ExitApp/ExitApp';
 import NextButton from '../components/NextButton/NextButton';
 import ShareContent from '../components/ShareContent/ShareContent';
+import SliderColor from '../components/SliderColor/SliderColor';
 
 export default function HomeScreen({ navigation }: any) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ExitApp />
+      <SliderColor />
       <ButtonToast text={'Show Toast!'} content={'No way !'} />
       <ShareContent />
       {/* === Next BTN with onClick prop === */}

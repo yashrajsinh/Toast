@@ -1,14 +1,9 @@
 import React from 'react';
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
+
 //Component
 import DoctorList from '../components/DoctorList/DoctorList';
+import { StatusBar } from 'react-native';
 
-export default function MovieData() {
-  return (
-    <SafeAreaProvider>
-      <SafeAreaView>
-        <DoctorList />
-      </SafeAreaView>
-    </SafeAreaProvider>
-  );
+export default function DoctorScreen() {
+  return <DoctorList />;
 }

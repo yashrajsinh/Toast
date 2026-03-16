@@ -5,23 +5,54 @@ import {
   StyleSheet,
   PixelRatio,
   Image,
+  RefreshControl,
+  TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
 //Data
 import data from '../../data/DoctorData';
+import { useNavigation } from '@react-navigation/native';
+
 {
   /* ===
   This shows the scroll view to the user rendering data from data.js
   === */
 }
-export default function DoctorList() {
+export default function DoctorList({}) {
+  //Navigation
+  const navigation = useNavigation();
   //use of API (PixelRatio)
   const imageSize = PixelRatio.getPixelSizeForLayoutSize(30);
+  //for refresh control
+  const [refreshing, setRefreshing] = useState(false);
+  //use State for refreshing data
+  const [doctors, setDoctors] = useState(data);
+
+  //function to handle API
+  const onRefresh = () => {
+    setRefreshing(true);
+    //call API
+    setTimeout(() => {
+      //refresh DRs here
+      setDoctors(data);
+      setRefreshing(false);
+    }, 2000); // 2 seconds
+  };
+
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.card}>
-        {data.map((doctor, index) => (
+    <ScrollView
+      contentContainerStyle={styles.container}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
+      {doctors.map((doctor, index) => (
+        <TouchableOpacity
+          key={index}
+          style={styles.card}
+          onPress={() => navigation.navigate('Profile', { doctor })}
+        >
           <View key={index} style={styles.doctorItem}>
             {/* === Resize image using pixel ratio === */}
             <Image
@@ -39,8 +70,8 @@ export default function DoctorList() {
               <Text style={styles.doctorSpeciality}>{doctor.type}</Text>
             </View>
           </View>
-        ))}
-      </View>
+        </TouchableOpacity>
+      ))}
     </ScrollView>
   );
 }
@@ -52,9 +83,10 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 12,
+    padding: 15,
+    borderRadius: 15,
     elevation: 3,
+    margin: 10,
   },
   doctorItem: {
     flexDirection: 'row', // image + text side by side

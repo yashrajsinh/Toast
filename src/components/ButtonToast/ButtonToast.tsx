@@ -4,10 +4,10 @@ import React from 'react';
   /* === This component is responsible for showing a toast msg on the screen
   NOTE: Only works on android devices  */
 }
-export default function ButtonToast() {
+export default function ButtonToast({ text, content }: any) {
   //Toast message on android
   function showToast() {
-    ToastAndroid.show('You are old bro... 🎉', ToastAndroid.LONG);
+    ToastAndroid.show(content, ToastAndroid.LONG);
   }
   return (
     <View
@@ -27,7 +27,7 @@ export default function ButtonToast() {
           borderRadius: 8,
         }}
       >
-        <Text> Surprise Me !</Text>
+        <Text> {text}</Text>
       </TouchableOpacity>
     </View>
   );

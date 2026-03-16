@@ -14,7 +14,7 @@ export default function ShareContent() {
       } else if (result.action === Share.dismissedAction) {
         console.log('Share dismissed');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sharing content:', error.message);
     }
   };

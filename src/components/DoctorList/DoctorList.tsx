@@ -1,4 +1,11 @@
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  PixelRatio,
+  Image,
+} from 'react-native';
 import React from 'react';
 
 //Data
@@ -9,13 +16,28 @@ import data from '../../data/DoctorData';
   === */
 }
 export default function DoctorList() {
+  //use of API (PixelRatio)
+  const imageSize = PixelRatio.getPixelSizeForLayoutSize(30);
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.card}>
         {data.map((doctor, index) => (
           <View key={index} style={styles.doctorItem}>
-            <Text style={styles.doctorName}> {doctor.name}</Text>
-            <Text style={styles.doctorSpeciality}>{doctor.type}</Text>
+            {/* === Resize image using pixel ratio === */}
+            <Image
+              source={{ uri: doctor.image }}
+              style={{
+                width: imageSize,
+                height: imageSize,
+                borderRadius: imageSize / 2,
+                marginRight: 12,
+              }}
+            />
+            {/* Text Container */}
+            <View>
+              <Text style={styles.doctorName}>{doctor.name}</Text>
+              <Text style={styles.doctorSpeciality}>{doctor.type}</Text>
+            </View>
           </View>
         ))}
       </View>
@@ -34,17 +56,11 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     elevation: 3,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: '600',
-  },
-  subtitle: {
-    marginTop: 6,
-    color: '#666',
-  },
   doctorItem: {
+    flexDirection: 'row', // image + text side by side
+    alignItems: 'center',
     marginTop: 15,
-    padding: 10,
+    paddingBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },

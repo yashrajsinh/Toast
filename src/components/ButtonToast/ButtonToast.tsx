@@ -29,7 +29,6 @@ export default function ButtonToast() {
       >
         <Text> Surprise Me !</Text>
       </TouchableOpacity>
-      {/* === Next BTN  ===*/}
     </View>
   );
 }

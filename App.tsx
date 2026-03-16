@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // Screens
 import HomeScreen from './src/screens/HomeScreen';
 import DoctorScreen from './src/screens/DoctorScreen';
+import DoctorDetailsScreen from './src/screens/DoctorDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,7 @@ function App() {
           <Stack.Screen name="Home" component={HomeScreen} />
           {/* Doctor Screen */}
           <Stack.Screen name="Details" component={DoctorScreen} />
+          <Stack.Screen name="Profile" component={DoctorDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

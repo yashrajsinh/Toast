@@ -10,7 +10,7 @@ export default function HomeScreen({ navigation }: any) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ExitApp />
-      <ButtonToast />
+      <ButtonToast text={'Show Toast!'} content={'No way !'} />
       {/* === Next BTN with onClick prop === */}
       <NextButton onClick={() => navigation.navigate('Details')} />
     </SafeAreaView>

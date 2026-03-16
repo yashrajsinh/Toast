@@ -6,18 +6,22 @@ import {
   PixelRatio,
   Image,
   RefreshControl,
-  StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 import React, { useState } from 'react';
 
 //Data
 import data from '../../data/DoctorData';
+import { useNavigation } from '@react-navigation/native';
+
 {
   /* ===
   This shows the scroll view to the user rendering data from data.js
   === */
 }
-export default function DoctorList() {
+export default function DoctorList({}) {
+  //Navigation
+  const navigation = useNavigation();
   //use of API (PixelRatio)
   const imageSize = PixelRatio.getPixelSizeForLayoutSize(30);
   //for refresh control
@@ -43,8 +47,12 @@ export default function DoctorList() {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      <View style={styles.card}>
-        {doctors.map((doctor, index) => (
+      {doctors.map((doctor, index) => (
+        <TouchableOpacity
+          key={index}
+          style={styles.card}
+          onPress={() => navigation.navigate('Profile', { doctor })}
+        >
           <View key={index} style={styles.doctorItem}>
             {/* === Resize image using pixel ratio === */}
             <Image
@@ -62,8 +70,8 @@ export default function DoctorList() {
               <Text style={styles.doctorSpeciality}>{doctor.type}</Text>
             </View>
           </View>
-        ))}
-      </View>
+        </TouchableOpacity>
+      ))}
     </ScrollView>
   );
 }
@@ -75,9 +83,10 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#fff',
-    padding: 20,
-    borderRadius: 12,
+    padding: 15,
+    borderRadius: 15,
     elevation: 3,
+    margin: 10,
   },
   doctorItem: {
     flexDirection: 'row', // image + text side by side
